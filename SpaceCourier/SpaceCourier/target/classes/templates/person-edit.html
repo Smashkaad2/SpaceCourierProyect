@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Persona</h1>
+    <p>A continuación editarás una persona</p>
+
+    <form th:action="@{/person/save}" method="post">
+        <input type="hidden" name="id" th:field="${persona.id}">
+        <label for="txtNombre">Nombre:</label>
+        <input type="text" id="txtNombre" name="nombre" th:field="${persona.nombre}">
+        <label for="txtApellido">Apellido:</label>
+        <input type="text" id="txtApellido" name="apellido" th:field="${persona.apellido}">
+
+        <button>Guardar</button>
+    </form>
+</body>
+
+</html>
