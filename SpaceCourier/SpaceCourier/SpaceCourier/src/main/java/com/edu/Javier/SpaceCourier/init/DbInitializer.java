@@ -28,13 +28,16 @@ public class DbInitializer implements CommandLineRunner {
         Nave n1 = new Nave(null, "JavierShip", 300, 100, new ArrayList<Jugador>(), new ArrayList<ProductoxNave>());
         naveRepository.save(n1);
 
+        Nave n2 = new Nave(null, "GordoShip", 300, 100, new ArrayList<Jugador>(), new ArrayList<ProductoxNave>());
+        naveRepository.save(n2);
+
         Jugador p1 = new Jugador(null, "Kaad", "Password", "Captain", n1);
         jugadorRepository.save(p1);
-        Jugador p2 = new Jugador(null, "Uzeche", "Password", "Trooper", null);
+        Jugador p2 = new Jugador(null, "Uzeche", "Password", "Trooper", n2);
         jugadorRepository.save(p2);
-        Jugador p3 = new Jugador(null, "TropiFAT", "Password", "Trooper", null);
+        Jugador p3 = new Jugador(null, "TropiFAT", "Password", "Trooper", n2);
         jugadorRepository.save(p3);
-        Jugador p4 = new Jugador(null, "YoryoBOT", "Password", "Trooper", null);
+        Jugador p4 = new Jugador(null, "YoryoBOT", "Password", "Trooper", n1);
         jugadorRepository.save(p4);
 
         
