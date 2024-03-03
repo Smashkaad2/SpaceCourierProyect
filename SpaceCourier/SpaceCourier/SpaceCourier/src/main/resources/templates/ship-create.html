@@ -11,13 +11,13 @@
     <h1>Jugador</h1>
     <p>A continuación se creara un Jugador</p>
 
-    <form th:action="@{/player/save}" method="post">
-        <label for="txtNombre">Username:</label>
-        <input type="text" id="txtNombre" name="nombre" th:field="${player.username}">
-        <label for="txtPassword">Password:</label>
-        <input type="text" id="txtPassword" name="password" th:field="${player.password}">
-        <label for="txtApellido">Rol:</label>
-        <input type="text" id="txtRol" name="Rol" th:field="${player.rol}">
+    <form th:action="@{/ship/save}" method="post">
+        <label for="txtNombre">Ship Name:</label>
+        <input type="text" id="txtNombre" name="nombre" th:field="${ship.ship_name}">
+        <label for="txtshipPassword">Ship Speed:</label>
+        <input type="text" id="shipPassword" name="password" th:field="${ship.velocidadMax}">
+        <label for="txtApellido">Maximum Capacity:</label>
+        <input type="text" id="txtRol" name="Rol" th:field="${ship.capacidadCarga}">
 
         <button>Guardar</button>
     </form>

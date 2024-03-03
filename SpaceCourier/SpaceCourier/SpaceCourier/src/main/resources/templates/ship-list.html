@@ -9,15 +9,17 @@
 
 <body>
     <h1>Listado de Naves</h1>
-    <p>A continuación verás las naves activas en la base de datos</p>
+    <p>A continuación verás las Naves por medio de su nombre y id</p>
 
+    <!-- <p th:each="ship : ${ships}" th:text="${ship.ship_name}"></p> -->
     <table class="entity-list">
         <thead>
             <tr>
-                <th>Nombre Nave</th>
-                <th>iD</th>
-                <th>Editar</th>
-                <th>Borrar</th>
+                <th>ship_name</th>
+                <th>Id</th>
+                <th>Detalles</th>
+                <!-- <th>Editar</th>
+                <th>Borrar</th> -->
             </tr>
         </thead>
 
@@ -26,22 +28,17 @@
                 <td th:text="${ship.ship_name}"></td>
                 <td th:text="${ship.id}"></td>
                 <td>
-                    <a th:href="@{/player/view/{id}(id=${player.id})}">Detalles</a>
+                    <a th:href="@{/ship/view/{id}(id=${ship.id})}">Detalles</a>
                 </td>
                 <td>
-                    <a th:href="@{/player/edit/{id}(id=${player.id})}">Editar</a>
+                    <a th:href="@{/ship/edit/{id}(id=${ship.id})}">Editar</a>
                 </td>
                 <td>
-                    <a th:href="@{/player/delete/{id}(id=${player.id})}">Borrar</a>
+                    <a th:href="@{/ship/delete/{id}(id=${ship.id})}">Borrar</a>
                 </td>
             </tr>
         </tbody>
     </table>
-
-    <br>
-    <a th:href="@{/player/create}">Crear</a>
-    </ul>
-
 
 </body>
 

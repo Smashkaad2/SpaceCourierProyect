@@ -8,19 +8,19 @@
 </head>
 
 <body>
-    <h1>Jugador</h1>
-    <p>A continuación se editara un Jugador, en caso de no existir se creara</p>
+    <h1>Jugador Incluir</h1>
+    <p>A continuación se Incluira un Jugador a una nave especifica, en caso de no existir se creara</p>
 
     <form th:action="@{/player/save}" method="post">
         <input type="hidden" name="id" th:field="${player.id}">
         <label for="txtNombre">Nombre:</label>
         <input type="text" id="txtNombre" name="nombre" th:field="${player.username}">
-        <label for="txtRol">Rol:</label>
-        <input type="text" id="txtRol" name="Rol" th:field="${player.rol}">
+        <!-- <label for="txtNaveId">Nave Id:</label>
+        <input type="text" id="txtNaveId" name="Nave Id" th:field="${ship.id}"> -->
 
         <button>Guardar</button>
     </form>
-    <a th:href="@{/player/list}">Volver</a>
+    <a th:href="@{/ship/list}">Volver</a>
 </body>
 
 </html>

@@ -37,9 +37,6 @@ public class JugadorController {
         return playerDelete;
     }
 
-
-
-
     @GetMapping("/create")
     public ModelAndView crearJugador() {
         Jugador newPlayer = new Jugador();

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Nave Editar</h1>
+    <p>A continuación se editara una Nave, en caso de no existir se creara</p>
+
+    <form th:action="@{/ship/save}" method="post">
+        <input type="hidden" name="id" th:field="${ship.id}">
+        <label for="txtNombre">Nombre Nave:</label>
+        <input type="text" id="txtNombre" name="nombre" th:field="${ship.ship_name}">
+        <label for="txtvelocidad">Velocidad:</label>
+        <input type="text" id="txtvelocidad" name="Speed" th:field="${ship.velocidadMax}">
+        <label for="txtCapacidad">Velocidad:</label>
+        <input type="text" id="txtCapacidad" name="Capacity" th:field="${ship.capacidadCarga}">
+
+        <button>Guardar</button>
+    </form>
+    <a th:href="@{/ship/list}">Volver</a>
+</body>
+
+</html>
