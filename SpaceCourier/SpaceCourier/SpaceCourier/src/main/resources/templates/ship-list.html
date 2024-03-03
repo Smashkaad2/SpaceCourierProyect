@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Players</title>
+</head>
+
+<body>
+    <h1>Listado de Naves</h1>
+    <p>A continuación verás las naves activas en la base de datos</p>
+
+    <table class="entity-list">
+        <thead>
+            <tr>
+                <th>Nombre Nave</th>
+                <th>iD</th>
+                <th>Editar</th>
+                <th>Borrar</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="ship : ${ships}">
+                <td th:text="${ship.ship_name}"></td>
+                <td th:text="${ship.id}"></td>
+                <td>
+                    <a th:href="@{/player/view/{id}(id=${player.id})}">Detalles</a>
+                </td>
+                <td>
+                    <a th:href="@{/player/edit/{id}(id=${player.id})}">Editar</a>
+                </td>
+                <td>
+                    <a th:href="@{/player/delete/{id}(id=${player.id})}">Borrar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a th:href="@{/player/create}">Crear</a>
+    </ul>
+
+
+</body>
+
+</html>

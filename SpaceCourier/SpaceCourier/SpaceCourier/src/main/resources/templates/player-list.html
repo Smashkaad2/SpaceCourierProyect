@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Players</title>
+</head>
+
+<body>
+    <h1>Listado de Jugadores</h1>
+    <p>A continuación verás los jugadores por medio de su Username  en la base de datos</p>
+
+    <table class="entity-list">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Id</th>
+                <th>Detalles</th>
+                <th>Editar</th>
+                <th>Borrar</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="player : ${players}">
+                <td th:text="${player.username}"></td>
+                <td th:text="${player.id}"></td>
+                <td>
+                    <a th:href="@{/player/view/{id}(id=${player.id})}">Detalles</a>
+                </td>
+                <td>
+                    <a th:href="@{/player/edit/{id}(id=${player.id})}">Editar</a>
+                </td>
+                <td>
+                    <a th:href="@{/player/delete/{id}(id=${player.id})}">Borrar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a th:href="@{/player/create}">Crear</a>
+    </ul>
+
+
+</body>
+
+</html>

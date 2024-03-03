@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Jugador</h1>
+    <p>A continuación se editara un Jugador, en caso de no existir se creara</p>
+
+    <form th:action="@{/player/save}" method="post">
+        <input type="hidden" name="id" th:field="${player.id}">
+        <label for="txtNombre">Nombre:</label>
+        <input type="text" id="txtNombre" name="nombre" th:field="${player.username}">
+        <label for="txtApellido">Rol:</label>
+        <input type="text" id="txtRol" name="Rol" th:field="${player.rol}">
+
+        <button>Guardar</button>
+    </form>
+    <a th:href="@{/player/list}">Volver</a>
+</body>
+
+</html>
