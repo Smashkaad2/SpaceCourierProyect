@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Estrella</h1>
+    <p>A continuación se crea una Estrella</p>
+
+    <form th:action="@{/star/save}" method="post">
+        <label for="txtNombre">Star Name:</label>
+        <input type="text" id="txtNombre" name="nombre" th:field="${star.nombre_estrella}">
+        <label for="txtX">X:</label>
+        <input type="text" id="txtX" name="password" th:field="${star.coordenada_X}">
+        <label for="txtY">Y:</label>
+        <input type="text" id="txtY" name="password" th:field="${star.coordenada_y}">
+        <label for="txtZ">Z:</label>
+        <input type="text" id="txtZ" name="password" th:field="${star.coordenada_z}">
+        
+        <button>Guardar</button>
+    </form>
+    <a th:href="@{/star/list}">Volver</a>
+</body>
+
+</html>

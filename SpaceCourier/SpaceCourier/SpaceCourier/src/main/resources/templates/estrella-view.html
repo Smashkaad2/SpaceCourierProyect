@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Estrella Detalles</h1>
+    <p>A continuación verás una unica Estrella y sus atributos</p>
+
+    <p th:text="|Ship Name: ${star.nombre_estrella}"></p>
+    <p th:text="|X: ${star.coordenada_X}"></p>
+    <p th:text="|Y: ${star.coordenada_y}"></p>
+    <p th:text="|Z: ${star.coordenada_z}"></p>
+
+
+    <table class="entity-list">
+        <thead>
+            <tr>
+                <th>PlanetaName</th>
+                <th>Id</th>
+                <th>Detalles</th>
+                <th>Editar</th>
+                <th>Borrar</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="planet: ${star.planetas}">
+                <td th:text="${planet.nombre_planeta}"></td>
+                <td th:text="${planet.id}"></td>
+                <td>
+                    <a th:href="@{/planet/view/{id}(id=${planet.id})}">Detalles</a>
+                </td>
+                <td>
+                    <a th:href="@{/planet/edit/{id}(id=${planet.id})}">Editar</a>
+                </td>
+                <td>
+                    <a th:href="@{/player/delete/{id}(id=${planet.id})}">Borrar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <a th:href="@{/star/list}">Volver</a>
+
+</body>
+
+</html>

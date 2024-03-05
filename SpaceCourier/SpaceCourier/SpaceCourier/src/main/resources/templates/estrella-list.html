@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Estrellas</title>
+</head>
+
+<body>
+    <h1>Listado de Estrellas</h1>
+    <p>A continuación verás las Estrellas por medio de su nombre y id</p>
+
+    <!-- <p th:each="ship : ${ships}" th:text="${ship.ship_name}"></p> -->
+    <table class="entity-list">
+        <thead>
+            <tr>
+                <th>estrella_name</th>
+                <th>Id</th>
+                <th>Detalles</th>
+                <!-- <th>Editar</th>
+                <th>Borrar</th> -->
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="star : ${stars}">
+                <td th:text="${star.nombre_estrella}"></td>
+                <td th:text="${star.id}"></td>
+                <td>
+                    <a th:href="@{/star/view/{id}(id=${star.id})}">Detalles</a>
+                </td>
+                <td>
+                    <a th:href="@{/star/edit/{id}(id=${star.id})}">Editar</a>
+                </td>
+                <td>
+                    <a th:href="@{/star/delete/{id}(id=${star.id})}">Borrar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a th:href="@{/star/create}">Crear</a>
+
+</body>
+
+</html>
