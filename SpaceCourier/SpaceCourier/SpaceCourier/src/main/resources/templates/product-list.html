@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Productos</title>
+</head>
+
+<body>
+    <h1>Listado de Productos</h1>
+    <p>A continuación verás las Estrellas por medio de su nombre y id</p>
+
+    <!-- <p th:each="ship : ${ships}" th:text="${ship.ship_name}"></p> -->
+    <table class="entity-list">
+        <thead>
+            <tr>
+                <th>product_name</th>
+                <th>Id</th>
+                <th>Detalles</th>
+                <th>Editar</th>
+                <th>Borrar</th> 
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.nombreProducto}"></td>
+                <td th:text="${product.id}"></td>
+                <td>
+                    <a th:href="@{/product/view/{id}(id=${product.id})}">Detalles</a>
+                </td>
+                <td>
+                    <a th:href="@{/product/edit/{id}(id=${product.id})}">Editar</a>
+                </td>
+                <td>
+                    <a th:href="@{/product/delete/{id}(id=${product.id})}">Borrar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <a th:href="@{/product/create}">Crear</a>
+
+</body>
+
+</html>

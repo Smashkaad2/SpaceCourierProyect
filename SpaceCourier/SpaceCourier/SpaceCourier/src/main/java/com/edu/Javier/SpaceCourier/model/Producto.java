@@ -24,7 +24,7 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String nombre_Producto;
+    private String nombreProducto;
     private String description;
 
     @OneToMany(mappedBy = "producto")
@@ -32,4 +32,21 @@ public class Producto {
 
     @OneToMany(mappedBy = "productoEst")
     private List<ProductoxEstrella> productosEstrella;
+
+    public List<ProductoxNave> getProductosNave() {
+        return productosNave;
+    }
+
+    public boolean addProductoNave(ProductoxNave producto) {
+        return productosNave.add(producto);
+    }
+
+    public List<ProductoxEstrella> getProductosEstrellas() {
+        return productosEstrella;
+    }
+
+    public boolean addProductoEstrella(ProductoxEstrella productoEstrella) {
+        return productosEstrella.add(productoEstrella);
+    }
+
 }

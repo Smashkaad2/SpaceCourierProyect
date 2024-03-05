@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.edu.Javier.SpaceCourier.exception.ExcepcionLlena;
 import com.edu.Javier.SpaceCourier.model.Jugador;
 import com.edu.Javier.SpaceCourier.model.Nave;
 import com.edu.Javier.SpaceCourier.services.IJugadorService;
@@ -28,7 +29,6 @@ public class NaveController {
     @Autowired
     private IJugadorService jugadorService;
 
-    
     // Creando & Actualizando Jugador
     @PostMapping("/save")
     public RedirectView guardarNave(@ModelAttribute Nave ship) {
@@ -37,10 +37,20 @@ public class NaveController {
     }
 
     @PostMapping("/delete")
-    public RedirectView deleteNave(@ModelAttribute Nave ship){
-        naveService.borrarNave(ship.getId());
-        return new RedirectView("/ship/list");
+    public String deleteNave(@ModelAttribute Nave ship) {
+        try {
+            naveService.borrarNave(ship.getId());
+            return "redirect:/ship/list";
+        }
+
+        catch (ExcepcionLlena e) {
+            String message = "Error de FK";
+            ModelAndView errorView = new ModelAndView("errorhandler");
+            errorView.addObject("error", message);
+            return "errorhandler";
+        } 
     }
+
 
     @GetMapping("/list")
     public ModelAndView listarNaves() {
@@ -74,7 +84,7 @@ public class NaveController {
         return naveEdit;
     }
 
-    //Revisar
+    // Revisar
     @GetMapping("/delete/{idShip}")
     public ModelAndView borrarJugador(@PathVariable Long idShip) {
         Nave ship = naveService.obtenerNave(idShip);
@@ -83,10 +93,9 @@ public class NaveController {
         return shipDelete;
     }
 
-
-    //Revisar
+    // Revisar
     @GetMapping("/addPlayer/{idPlayer}/{idNave}")
-    public ModelAndView addJugador(@PathVariable Long idPlayer, @PathVariable Long idNave){
+    public ModelAndView addJugador(@PathVariable Long idPlayer, @PathVariable Long idNave) {
         Jugador playerAdd = jugadorService.obtenerJugador(idPlayer);
         Nave naveAdd = naveService.obtenerNave(idNave);
         ModelAndView shipAddPlayer = new ModelAndView("ship-addplayer");

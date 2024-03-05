@@ -1,6 +1,5 @@
 package com.edu.Javier.SpaceCourier.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
@@ -35,5 +34,21 @@ public class Estrella {
 
     @OneToMany(mappedBy = "estrellaProd")
     private List<ProductoxEstrella> productos;
+
+    public List<Planeta> getPlanetas() {
+        return planetas;
+    }
+
+    public boolean addProductoPlaneta(Planeta planeta) {
+        return planetas.add(planeta);
+    }
+
+    public List<ProductoxEstrella> getProductosEnEstrella() {
+        return productos;
+    }
+
+    public boolean addProductoenEstrella(ProductoxEstrella productoenEstrella) {
+        return productos.add(productoenEstrella);
+    }
 
 }

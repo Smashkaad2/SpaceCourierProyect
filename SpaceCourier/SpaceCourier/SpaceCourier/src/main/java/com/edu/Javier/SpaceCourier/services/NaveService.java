@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.edu.Javier.SpaceCourier.exception.ExcepcionLlena;
 import com.edu.Javier.SpaceCourier.model.Nave;
 import com.edu.Javier.SpaceCourier.repository.NaveRepository;
 
@@ -30,6 +31,11 @@ public class NaveService implements INaveService {
 
     @Override
     public void borrarNave(Long idNave) {
+        Nave nave = obtenerNave(idNave);
+        if (!nave.getJugador().isEmpty()) {
+            throw new ExcepcionLlena("No se puede borrar la nave porque tiene pasajeros");
+        }
+        else
         naveRepository.deleteById(idNave);
     }
 

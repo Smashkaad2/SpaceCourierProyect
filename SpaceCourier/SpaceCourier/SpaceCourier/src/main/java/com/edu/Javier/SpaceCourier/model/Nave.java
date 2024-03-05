@@ -43,4 +43,12 @@ public class Nave {
     public boolean addJugador(Jugador player) {
         return jugador.add(player);
     }
+
+    public List<ProductoxNave> getProductos() {
+        return productos;
+    }
+
+    public boolean addProducto(ProductoxNave producto) {
+        return productos.add(producto);
+    }
 }

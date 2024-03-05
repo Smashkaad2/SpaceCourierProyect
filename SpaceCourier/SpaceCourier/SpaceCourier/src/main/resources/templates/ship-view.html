@@ -43,6 +43,36 @@
         </tbody>
     </table>
 
+    <table class="entity-list">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Id</th>
+                <th>Detalles</th>
+                <th>Editar</th>
+                <th>Borrar</th>
+            </tr>
+        </thead>
+
+        <br>    
+
+        <tbody>
+            <tr th:each="producto : ${ship.productos}">
+                <td th:text="${producto.producto.nombreProducto}"></td>
+                <td th:text="${producto.id}"></td>
+                <td>
+                    <a th:href="@{/producto/view/{id}(id=${producto.id})}">Detalles</a>
+                </td>
+                <td>
+                    <a th:href="@{/producto/edit/{id}(id=${producto.id})}">Editar</a>
+                </td>
+                <td>
+                    <a th:href="@{/producto/delete/{id}(id=${producto.id})}">Borrar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
 </body>
 
 </html>

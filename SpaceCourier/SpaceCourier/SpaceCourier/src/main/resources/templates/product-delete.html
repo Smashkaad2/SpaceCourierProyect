@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Estrella a Eliminar</h1>
+    <p>La Siguiente Estrella se eliminara de la base de datos</p>
+
+    <form th:action="@{/star/delete}" method="post">
+        <label for="id">idStar:</label>
+        <input type="text" name="id" th:field="${star.id}">
+        <label for="txtNombre">Star Name:</label>
+        <input type="text" id="txtNombre" name="nombre" th:field="${star.nombre_estrella}">
+    
+        <button>Delete</button>
+    </form>
+    <a th:href="@{/star/list}">Volver</a>
+</body>
+
+</html>
