@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.edu.Javier.SpaceCourier.exception.ExcepcionLlena;
+import com.edu.Javier.SpaceCourier.model.Nave;
 import com.edu.Javier.SpaceCourier.model.Producto;
 import com.edu.Javier.SpaceCourier.repository.ProductoRepository;
 
@@ -28,8 +30,14 @@ public class ProductoService implements IProductoService {
         return productoRepository.findAll();
     }
 
+    
     @Override
     public void borrarProducto(Long idProducto) {
+        Producto product = obtenerProducto(idProducto);
+        if (!product.getProductosEstrellas().isEmpty()) {
+            throw new ExcepcionLlena("No se puede borrar el producto");
+        }
+        else
         productoRepository.deleteById(idProducto);
     }
 

@@ -61,17 +61,19 @@
                 <td th:text="${producto.producto.nombreProducto}"></td>
                 <td th:text="${producto.id}"></td>
                 <td>
-                    <a th:href="@{/producto/view/{id}(id=${producto.id})}">Detalles</a>
+                    <a th:href="@{/product/view/{id}(id=${producto.id})}">Detalles</a>
                 </td>
                 <td>
-                    <a th:href="@{/producto/edit/{id}(id=${producto.id})}">Editar</a>
+                    <a th:href="@{/product/edit/{id}(id=${producto.id})}">Editar</a>
                 </td>
                 <td>
-                    <a th:href="@{/producto/delete/{id}(id=${producto.id})}">Borrar</a>
+                    <a th:href="@{/product/delete/{id}(id=${producto.id})}">Borrar</a>
                 </td>
             </tr>
         </tbody>
     </table>
+
+    
 
 </body>
 

@@ -30,7 +30,7 @@
 
         <tbody>
             <tr th:each="planet: ${star.planetas}">
-                <td th:text="${planet.nombre_planeta}"></td>
+                <td th:text="${planet.nombrePlaneta}"></td>
                 <td th:text="${planet.id}"></td>
                 <td>
                     <a th:href="@{/planet/view/{id}(id=${planet.id})}">Detalles</a>

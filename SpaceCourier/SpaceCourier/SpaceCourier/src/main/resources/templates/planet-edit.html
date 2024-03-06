@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Nave Editar</h1>
+    <p>A continuación se editara una Nave, en caso de no existir se creara</p>
+
+    <form th:action="@{/planet/save}" method="post">
+        <input type="hidden" name="id" th:field="${planet.id}">
+        <label for="txtNombre">Nombre Planeta:</label>
+        <input type="text" id="txtNombre" name="nombre" th:field="${planet.nombrePlaneta}">
+        <label for="txtvelocidad">Description:</label>
+        <input type="text" id="txtvelocidad" name="Speed" th:field="${planet.descripcionPlaneta}">
+    
+        <button>Guardar</button>
+    </form>
+    <a th:href="@{/planet/list}">Volver</a>
+</body>
+
+</html>

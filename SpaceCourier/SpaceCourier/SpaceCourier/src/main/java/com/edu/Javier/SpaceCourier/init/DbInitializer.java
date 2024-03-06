@@ -16,6 +16,7 @@ import com.edu.Javier.SpaceCourier.model.ProductoxNave;
 import com.edu.Javier.SpaceCourier.repository.EstrellaRepository;
 import com.edu.Javier.SpaceCourier.repository.JugadorRepository;
 import com.edu.Javier.SpaceCourier.repository.NaveRepository;
+import com.edu.Javier.SpaceCourier.repository.PlanetaRepository;
 import com.edu.Javier.SpaceCourier.repository.ProductoRepository;
 import com.edu.Javier.SpaceCourier.repository.ProductoxNaveRepository;
 
@@ -33,6 +34,8 @@ public class DbInitializer implements CommandLineRunner {
     private ProductoRepository productoRepository;
     @Autowired
     private ProductoxNaveRepository productoxNaveRepository;
+    @Autowired
+    private PlanetaRepository planetaRepository;
 
 
     @Override
@@ -82,8 +85,8 @@ public class DbInitializer implements CommandLineRunner {
         Jugador p4 = new Jugador(null, "YoryoBOT", "Password", "Trooper", n1);
         jugadorRepository.save(p4);
 
-        
-
+        Planeta pla1 = new Planeta(null, "Planeta Vegeta", "Muh buenas a todos waaaaaapisimos", e1);
+        planetaRepository.save(pla1);
         
     }
 

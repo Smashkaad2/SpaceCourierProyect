@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Players</title>
+    <title>Lista Planetas</title>
 </head>
 
 <body>
-    <h1>Listado de Naves</h1>
-    <p>A continuación verás las Naves por medio de su nombre y id</p>
+    <h1>Listado de Planetas</h1>
+    <p>A continuación verás los diferentes Planetas en linea</p>
 
     <!-- <p th:each="ship : ${ships}" th:text="${ship.ship_name}"></p> -->
     <table class="entity-list">
         <thead>
             <tr>
-                <th>ship_name</th>
+                <th>planetaName</th>
                 <th>Id</th>
                 <th>Detalles</th>
                 <!-- <th>Editar</th>
@@ -24,24 +24,24 @@
         </thead>
 
         <tbody>
-            <tr th:each="ship : ${ships}">
-                <td th:text="${ship.ship_name}"></td>
-                <td th:text="${ship.id}"></td>
+            <tr th:each="planet : ${planets}">
+                <td th:text="${planet.nombrePlaneta}"></td>
+                <td th:text="${planet.id}"></td>
                 <td>
-                    <a th:href="@{/ship/view/{id}(id=${ship.id})}">Detalles</a>
+                    <a th:href="@{/planet/view/{id}(id=${planet.id})}">Detalles</a>
                 </td>
                 <td>
-                    <a th:href="@{/ship/edit/{id}(id=${ship.id})}">Editar</a>
+                    <a th:href="@{/planet/edit/{id}(id=${planet.id})}">Editar</a>
                 </td>
                 <td>
-                    <a th:href="@{/ship/delete/{id}(id=${ship.id})}">Borrar</a>
+                    <a th:href="@{/planet/delete/{id}(id=${planet.id})}">Borrar</a>
                 </td>
             </tr>
         </tbody>
     </table>
 
     <br>
-    <a th:href="@{/ship/list}">volver</a>
+    <a th:href="@{/planet/create}">Crear</a>
     <br>
     <a th:href="@{/home/init}">volver al Lobby</a>
 

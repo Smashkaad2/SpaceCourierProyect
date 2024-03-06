@@ -8,18 +8,18 @@
 </head>
 
 <body>
-    <h1>Estrella a Eliminar</h1>
+    <h1>Producto a Eliminar</h1>
     <p>La Siguiente Estrella se eliminara de la base de datos</p>
 
-    <form th:action="@{/star/delete}" method="post">
+    <form th:action="@{/product/delete}" method="post">
         <label for="id">idStar:</label>
-        <input type="text" name="id" th:field="${star.id}">
-        <label for="txtNombre">Star Name:</label>
-        <input type="text" id="txtNombre" name="nombre" th:field="${star.nombre_estrella}">
+        <input type="text" name="id" th:field="${product.id}">
+        <label for="txtNombre">Product Name:</label>
+        <input type="text" id="txtNombre" name="nombre" th:field="${product.nombreProducto}">
     
         <button>Delete</button>
     </form>
-    <a th:href="@{/star/list}">Volver</a>
+    <a th:href="@{/product/list}">Volver</a>
 </body>
 
 </html>

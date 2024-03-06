@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.edu.Javier.SpaceCourier.exception.ExcepcionLlena;
 import com.edu.Javier.SpaceCourier.model.Producto;
 import com.edu.Javier.SpaceCourier.services.IProductoService;
 
@@ -33,8 +34,14 @@ public class ProductoController {
 
     @PostMapping("/delete")
     public RedirectView deleteNave(@ModelAttribute Producto product){
-        productoService.borrarProducto(product.getId());
-        return new RedirectView("/product/list");
+        try{
+            productoService.borrarProducto(product.getId());
+            return new RedirectView("/product/list");
+        }
+        
+        catch(ExcepcionLlena e){
+             return new RedirectView("/error? message=No se puede borrar la nave porque tiene pasajeros");
+        }
     }
 
     @GetMapping("/list")

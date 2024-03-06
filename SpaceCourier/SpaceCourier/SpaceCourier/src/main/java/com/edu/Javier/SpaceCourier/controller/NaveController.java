@@ -37,20 +37,17 @@ public class NaveController {
     }
 
     @PostMapping("/delete")
-    public String deleteNave(@ModelAttribute Nave ship) {
+    public RedirectView deleteNave(@ModelAttribute Nave ship) {
         try {
             naveService.borrarNave(ship.getId());
-            return "redirect:/ship/list";
+            return new RedirectView("/ship/list");
         }
 
         catch (ExcepcionLlena e) {
-            String message = "Error de FK";
-            ModelAndView errorView = new ModelAndView("errorhandler");
-            errorView.addObject("error", message);
-            return "errorhandler";
-        } 
+            return new RedirectView("/error? message=No se puede borrar la nave porque tiene pasajeros");
+        }
     }
-
+    
 
     @GetMapping("/list")
     public ModelAndView listarNaves() {

@@ -14,9 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.edu.Javier.SpaceCourier.model.Planeta;
-import com.edu.Javier.SpaceCourier.model.Producto;
 import com.edu.Javier.SpaceCourier.services.IPlanetService;
-import com.edu.Javier.SpaceCourier.services.IProductoService;
 
 @RestController
 @Controller
@@ -55,30 +53,29 @@ public class PlanetaController {
         return planetView;
     }
 
-    // @GetMapping("/create")
-    // public ModelAndView crearProducto() {
-    //     Producto newProduct = new Producto();
-    //     ModelAndView productCreate = new ModelAndView("product-create");
-    //     productCreate.addObject("planet", newProduct);
-    //     return productCreate;
-    // }
+    @GetMapping("/create")
+    public ModelAndView crearPlaneta() {
+        Planeta newPlaneta = new Planeta();
+        ModelAndView planetaCreate = new ModelAndView("planet-create");
+        planetaCreate.addObject("planet", newPlaneta);
+        return planetaCreate;
+    }
 
-    // @GetMapping("/edit/{idstar}")
-    // public ModelAndView recuperarJugador(@PathVariable Long idProduct) {
-    //     Producto product = productoService.obtenerProducto(idProduct);
-    //     ModelAndView productEdit = new ModelAndView("product-edit");
-    //     productEdit.addObject("planet", product);
-    //     return productEdit;
-    // }
+    @GetMapping("/edit/{idPlanet}")
+    public ModelAndView recuperarJugador(@PathVariable Long idPlanet) {
+        Planeta planet = planetaService.obtenerPlaneta(idPlanet);
+        ModelAndView planetEdit = new ModelAndView("planet-edit");
+        planetEdit.addObject("planet", planet);
+        return planetEdit;
+    }
 
     //Revisar
-    // @GetMapping("/delete/{idProduct}")
-    // public ModelAndView borrarProducto(@PathVariable Long idProduct) {
-    //     Producto product = productoService.obtenerProducto(idProduct);
-    //     ModelAndView productDelete = new ModelAndView("product-delete");
-    //     productDelete.addObject("planet", product);
-    //     return productDelete;
-    // }
-
+    @GetMapping("/delete/{idPlanet}")
+    public ModelAndView borrarPlaneta(@PathVariable Long idPlanet) {
+        Planeta planet = planetaService.obtenerPlaneta(idPlanet);
+        ModelAndView planetDelete = new ModelAndView("planet-delete");
+        planetDelete.addObject("planet", planet);
+        return planetDelete;
+    }
 
 }

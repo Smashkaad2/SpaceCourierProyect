@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Planeta</title>
+</head>
+
+<body>
+    <h1>Planeta Eliminar</h1>
+    <p>El siguiente Planeta se eliminara de la base de datos</p>
+
+    <form th:action="@{/planet/delete}" method="post">
+        <label for="id">idShip:</label>
+        <input type="text" name="id" th:field="${planet.id}">
+        <label for="txtNombre">Planet name:</label>
+        <input type="text" id="txtNombre" name="nombre" th:field="${planet.nombrePlaneta}">
+    
+        <button>Delete</button>
+    </form>
+    <a th:href="@{/planet/list}">Volver</a>
+</body>
+
+</html>

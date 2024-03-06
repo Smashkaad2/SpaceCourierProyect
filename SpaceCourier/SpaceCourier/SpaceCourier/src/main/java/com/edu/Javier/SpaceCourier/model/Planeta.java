@@ -21,8 +21,8 @@ public class Planeta {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String nombre_planeta;
-    private String descripcion_planeta;
+    private String nombrePlaneta;
+    private String descripcionPlaneta;
 
     @ManyToOne
     private Estrella estrella; 
