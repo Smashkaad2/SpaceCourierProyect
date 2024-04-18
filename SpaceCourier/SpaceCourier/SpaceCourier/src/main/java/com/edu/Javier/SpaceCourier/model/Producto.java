@@ -2,10 +2,13 @@ package com.edu.Javier.SpaceCourier.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
@@ -26,11 +29,21 @@ public class Producto {
 
     private String nombreProducto;
     private String description;
+    private float factor_Demanda ;
+    private int stock;
+    private int precio;
+
+    
+    @ManyToOne
+    @JsonIgnore
+    private Planeta planetProduct;
+
 
     @OneToMany(mappedBy = "producto")
     private List<ProductoxNave> productosNave;
 
     @OneToMany(mappedBy = "productoEst")
+    @JsonIgnore
     private List<ProductoxEstrella> productosEstrella;
 
     public List<ProductoxNave> getProductosNave() {

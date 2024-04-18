@@ -19,7 +19,6 @@ import com.edu.Javier.SpaceCourier.model.Nave;
 import com.edu.Javier.SpaceCourier.services.IJugadorService;
 import com.edu.Javier.SpaceCourier.services.INaveService;
 
-@RestController
 @Controller
 @RequestMapping("/ship")
 public class NaveController {

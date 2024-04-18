@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.edu.Javier.SpaceCourier.model.Estrella;
+import com.edu.Javier.SpaceCourier.model.Planeta;
 import com.edu.Javier.SpaceCourier.repository.EstrellaRepository;
 
 @Service
@@ -31,6 +32,17 @@ public class EstrellaService implements IEstrellaService {
     @Override
     public void borrarEstrella(Long idEstrella) {
         estrellaRepository.deleteById(idEstrella);
+    }
+
+    @Override
+    public Estrella actualizarEstrella(Estrella star) {
+        return estrellaRepository.save(star);
+    }
+
+    @Override
+    public List<Planeta> obtenerListaPlanetas(Long idStar) {
+        Estrella star = estrellaRepository.findById(idStar).orElseThrow();
+        return star.getPlanetas();
     }
 
 }

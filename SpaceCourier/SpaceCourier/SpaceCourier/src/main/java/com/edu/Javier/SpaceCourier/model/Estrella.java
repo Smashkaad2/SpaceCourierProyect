@@ -2,6 +2,8 @@ package com.edu.Javier.SpaceCourier.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -33,6 +35,7 @@ public class Estrella {
     private List<Planeta> planetas;
 
     @OneToMany(mappedBy = "estrellaProd")
+    @JsonIgnore
     private List<ProductoxEstrella> productos;
 
     public List<Planeta> getPlanetas() {

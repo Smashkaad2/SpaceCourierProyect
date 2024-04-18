@@ -10,5 +10,6 @@ public interface INaveService {
     public Nave obtenerNave(Long idNave);
     public List<Nave> obtenerTodasNaves();
     public void borrarNave(Long idNave);
+    public Nave actualizarNave(Nave naveUp);
     
 }

@@ -1,0 +1,89 @@
+###Player
+GET http://localhost:8080/api/player/101
+
+###
+GET http://localhost:8080/api/player/list
+
+###
+POST http://localhost:8080/api/player
+Content-Type: application/json
+
+{
+    "username": "JavierGod",
+    "password": "1234",
+    "rol": "xd"
+}
+
+###
+PUT http://localhost:8080/api/player/101
+Content-Type: application/json
+
+{
+    "id": 101,
+    "username": "JavierCho",
+    "password": "1234",
+    "rol": "apaapapappa"
+}
+
+###
+DELETE http://localhost:8080/api/player/101
+
+###Ship
+GET http://localhost:8080/api/ship/list
+
+###
+POST http://localhost:8080/api/ship/create
+Content-Type: application/json
+
+{
+    "ship_name": "JavierGodShip",
+    "velocidadMax": "100",
+    "capacidadCarga": "20"
+}
+
+###
+DELETE http://localhost:8080/api/ship/delete/22
+
+###
+GET http://localhost:8080/api/ship/view/3
+
+###
+PUT http://localhost:8080/api/ship/edit/3
+Content-Type: application/json
+
+{
+    "id": 3,
+    "ship_name": "JpGodShip",
+    "velocidadMax": "100",
+    "capacidadCarga": "20"
+}
+
+###
+POST http://localhost:8080/api/ship/addExistingPlayer/8/21
+
+###
+POST http://localhost:8080/api/ship/addNewPlayer/21
+Content-Type: application/json
+
+{
+    "username": "JavierGod",
+    "password": "1234",
+    "rol": "xd"
+}
+
+###Star
+GET http://localhost:8080/api/star/list
+
+###
+GET http://localhost:8080/api/star/view/16
+
+###
+GET http://localhost:8080/api/star/list/planet/17
+
+###Planeta
+
+GET http://localhost:8080/api/planet/list
+
+###
+GET http://localhost:8080/api/product/list
+

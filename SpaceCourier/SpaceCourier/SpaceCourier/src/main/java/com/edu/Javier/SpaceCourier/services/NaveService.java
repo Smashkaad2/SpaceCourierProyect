@@ -39,4 +39,9 @@ public class NaveService implements INaveService {
         naveRepository.deleteById(idNave);
     }
 
+    @Override
+    public Nave actualizarNave(Nave naveUp) {
+        return naveRepository.save(naveUp);
+    }
+
 }

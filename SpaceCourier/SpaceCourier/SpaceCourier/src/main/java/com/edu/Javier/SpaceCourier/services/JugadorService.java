@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.edu.Javier.SpaceCourier.model.Jugador;
+import com.edu.Javier.SpaceCourier.model.Nave;
 import com.edu.Javier.SpaceCourier.repository.JugadorRepository;
 
 @Service
@@ -14,23 +15,35 @@ public class JugadorService implements IJugadorService {
     private JugadorRepository jugadorRepository;
 
     @Override
-    public Jugador crearJugador(Jugador nuevoJugador) { // Si detecta un Id que ya existe el crud simplemente lo va a actualizar con su id especifico.
+    public Jugador crearJugador(Jugador nuevoJugador) { // Si detecta un Id que ya existe el crud simplemente lo va a
+                                                        // actualizar con su id especifico.
         return jugadorRepository.save(nuevoJugador);
     }
 
     @Override
     public Jugador obtenerJugador(Long idJugador) {
-       return jugadorRepository.findById(idJugador).orElseThrow();
+        return jugadorRepository.findById(idJugador).orElseThrow();
     }
 
     @Override
     public List<Jugador> obtenerTodosJugadores() {
-       return jugadorRepository.findAll();
+        return jugadorRepository.findAll();
     }
-
 
     @Override
     public void borrarJugador(Long idJugador) {
         jugadorRepository.deleteById(idJugador);
-    }    
+    }
+
+    @Override
+    public Jugador actualizarJugador(Jugador jugador) {
+        return jugadorRepository.save(jugador);
+    }
+
+    @Override
+    public Nave obtenerNaveJugador(Long idJugador) {
+        Jugador player = jugadorRepository.findById(idJugador).orElseThrow();
+        Nave naveJugador = player.getNave();
+        return naveJugador;
+    }
 }

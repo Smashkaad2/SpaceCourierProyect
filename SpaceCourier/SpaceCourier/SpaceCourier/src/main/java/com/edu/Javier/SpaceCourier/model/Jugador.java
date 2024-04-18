@@ -1,5 +1,7 @@
 package com.edu.Javier.SpaceCourier.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +29,7 @@ public class Jugador {
     private String rol;
 
     @ManyToOne
+    @JsonIgnore
     private Nave nave;
 
 }

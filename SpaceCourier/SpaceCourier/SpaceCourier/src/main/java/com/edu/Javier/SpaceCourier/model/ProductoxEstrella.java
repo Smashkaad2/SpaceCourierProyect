@@ -1,5 +1,7 @@
 package com.edu.Javier.SpaceCourier.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,9 +29,11 @@ public class ProductoxEstrella {
     private float stock;
 
     @ManyToOne
+    @JsonIgnore
     private Producto productoEst;
 
     @ManyToOne
+    @JsonIgnore
     private Estrella estrellaProd;
 
 }

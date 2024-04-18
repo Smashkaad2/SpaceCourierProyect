@@ -15,4 +15,4 @@ public class HomeController {
         ModelAndView init = new ModelAndView("MainPage");
         return init;
     }
-}
+} 

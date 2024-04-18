@@ -1,5 +1,7 @@
 package com.edu.Javier.SpaceCourier.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,8 +26,10 @@ public class ProductoxNave {
     private int cantidad;
 
     @ManyToOne 
+    @JsonIgnore
     private Producto producto;
 
     @ManyToOne
+    @JsonIgnore
     private Nave naveProd;
 }

@@ -22,7 +22,6 @@ import com.edu.Javier.SpaceCourier.repository.PlanetaRepository;
 import com.edu.Javier.SpaceCourier.repository.ProductoRepository;
 import com.edu.Javier.SpaceCourier.repository.ProductoxNaveRepository;
 
-
 @Component
 public class DbInitializer implements CommandLineRunner {
 
@@ -39,19 +38,20 @@ public class DbInitializer implements CommandLineRunner {
     @Autowired
     private PlanetaRepository planetaRepository;
 
-
     @Override
     public void run(String... args) throws Exception {
 
-        
-
         if (naveRepository.count() == 0) {
-        
+
             for (int i = 1; i <= 20; i++) {
                 Nave nave = new Nave();
                 nave.setShip_name("Nave" + i);
                 nave.setVelocidadMax(100 + i);
                 nave.setCapacidadCarga(500 + i);
+                nave.setCoordenada_X(500 + i);
+                nave.setCoordenada_y(500 + i);
+                nave.setCoordenada_z(500 + i);
+                nave.setCreditos(500 + i);
                 naveRepository.save(nave);
             }
             System.out.println("Se han creado 20 naves.");
@@ -73,7 +73,7 @@ public class DbInitializer implements CommandLineRunner {
                 Nave naveAleatoria = navesDisponibles.get(rand.nextInt(navesDisponibles.size()));
 
                 jugador.setNave(naveAleatoria);
-                
+
                 jugadorRepository.save(jugador);
             }
             System.out.println("Se han creado 100 jugadores.");
@@ -81,18 +81,26 @@ public class DbInitializer implements CommandLineRunner {
             System.out.println("Ya existen jugadores en la base de datos.");
         }
 
-        Nave n3 = new Nave(null, "NaveFantasma", 300, 100, new ArrayList<Jugador>(), new ArrayList<ProductoxNave>());
+        Nave n3 = new Nave(null, "NaveFantasma", 300, 100, 0, 0, 0, 0, new ArrayList<Jugador>(),
+                new ArrayList<ProductoxNave>());
         naveRepository.save(n3);
 
         if (productoRepository.count() == 0) {
-        
-            for (int i = 1; i <= 10; i++) {
+
+            Random random = new Random();
+            int factorDemandaAleatorio = random.nextInt(1000000) + 1;
+            int stockAleatorio = random.nextInt(1000000) + 1;
+
+            for (int i = 1; i <= 30; i++) {
                 Producto producto = new Producto();
                 producto.setNombreProducto("Producto " + i);
                 producto.setDescription("Descripción del Producto " + i);
+                producto.setStock(stockAleatorio);
+                producto.setFactor_Demanda(factorDemandaAleatorio);
+
                 productoRepository.save(producto);
             }
-            System.out.println("Se han creado 10 productos.");
+            System.out.println("Se han creado 30 productos.");
         } else {
             System.out.println("Ya existen productos en la base de datos.");
         }
@@ -105,7 +113,7 @@ public class DbInitializer implements CommandLineRunner {
             Random rand = new Random();
             for (int i = 0; i < 500; i++) {
                 ProductoxNave productoxNave = new ProductoxNave();
-                productoxNave.setCantidad(rand.nextInt(100) + 1); 
+                productoxNave.setCantidad(rand.nextInt(100) + 1);
 
                 Producto productoAleatorio = productosDisponibles.get(rand.nextInt(productosDisponibles.size()));
                 Nave naveAleatoria = navesDisponibles.get(rand.nextInt(navesDisponibles.size()));
@@ -115,37 +123,36 @@ public class DbInitializer implements CommandLineRunner {
 
                 productoxNaveRepository.save(productoxNave);
             }
-            System.out.println("Se han creado 500 instancias de ProductoxNave y se han relacionado con naves y productos aleatorios.");
+            System.out.println(
+                    "Se han creado 500 instancias de ProductoxNave y se han relacionado con naves y productos aleatorios.");
         } else {
             System.out.println("Ya existen instancias de ProductoxNave en la base de datos.");
         }
 
+        Random random = new Random();
 
         if (estrellaRepository.count() == 0) {
-            
-            for (int i = 1; i <= 10; i++) {
+
+            for (int i = 1; i <= 20; i++) {
+
                 Estrella estrella = new Estrella();
                 estrella.setNombre_estrella("Estrella " + i);
-                estrella.setCoordenada_X(i * 100);
-                estrella.setCoordenada_y(i * 200);
-                estrella.setCoordenada_z(i * 300);
-                // No se están inicializando las listas de planetas y productos ya que no se especificó en el modelo
+                estrella.setCoordenada_X(random.nextInt(1000));
+                estrella.setCoordenada_y(random.nextInt(1000));
+                estrella.setCoordenada_z(random.nextInt(1000));
                 estrellaRepository.save(estrella);
             }
-            System.out.println("Se han creado 10 estrellas.");
+            System.out.println("Se han creado 20 estrellas.");
         } else {
             System.out.println("Ya existen estrellas en la base de datos.");
         }
 
-
-
-
-
         if (planetaRepository.count() == 0) {
 
             List<Estrella> estrellasDisponibles = estrellaRepository.findAll();
+            List<Producto> productosDisponibles = productoRepository.findAll();
 
-            for (int i = 1; i <= 10; i++) {
+            for (int i = 1; i <= 100; i++) {
                 Planeta planeta = new Planeta();
                 planeta.setNombrePlaneta("Planeta " + i);
                 planeta.setDescripcionPlaneta("Descripción del Planeta " + i);
@@ -155,33 +162,45 @@ public class DbInitializer implements CommandLineRunner {
                 Estrella estrellaAleatoria = estrellasDisponibles.get(rand.nextInt(estrellasDisponibles.size()));
 
                 planeta.setEstrella(estrellaAleatoria);
+                
+                for (int j = 0; j < 5; j++) {
+                    Producto productoAleatorio = productosDisponibles.get(random.nextInt(productosDisponibles.size()));
+                    planeta.addProducto(productoAleatorio);
+                }
+
                 planetaRepository.save(planeta);
             }
-            System.out.println("Se han creado 10 planetas.");
+            System.out.println("Se han creado 100 planetas.");
         } else {
             System.out.println("Ya existen planetas en la base de datos.");
         }
 
-        
-
-        // Nave n1 = new Nave(null, "JavierShip", 300, 100, new ArrayList<Jugador>(), new ArrayList<ProductoxNave>());
+        // Nave n1 = new Nave(null, "JavierShip", 300, 100, new ArrayList<Jugador>(),
+        // new ArrayList<ProductoxNave>());
         // naveRepository.save(n1);
 
-        // Nave n2 = new Nave(null, "GordoShip", 300, 100, new ArrayList<Jugador>(), new ArrayList<ProductoxNave>());
+        // Nave n2 = new Nave(null, "GordoShip", 300, 100, new ArrayList<Jugador>(), new
+        // ArrayList<ProductoxNave>());
         // naveRepository.save(n2);
 
-        // Nave n3 = new Nave(null, "NaveFantasma", 300, 100, new ArrayList<Jugador>(), new ArrayList<ProductoxNave>());
+        // Nave n3 = new Nave(null, "NaveFantasma", 300, 100, new ArrayList<Jugador>(),
+        // new ArrayList<ProductoxNave>());
         // naveRepository.save(n3);
 
-        // Producto pr1 = new Producto(null, "placeholder1", "producto place holder", new ArrayList<ProductoxNave>(), new ArrayList<ProductoxEstrella>());
+        // Producto pr1 = new Producto(null, "placeholder1", "producto place holder",
+        // new ArrayList<ProductoxNave>(), new ArrayList<ProductoxEstrella>());
         // productoRepository.save(pr1);
-        // Producto pr2 = new Producto(null, "placeholder2", "producto place holder", new ArrayList<ProductoxNave>(), new ArrayList<ProductoxEstrella>());
+        // Producto pr2 = new Producto(null, "placeholder2", "producto place holder",
+        // new ArrayList<ProductoxNave>(), new ArrayList<ProductoxEstrella>());
         // productoRepository.save(pr2);
-        // Producto pr3 = new Producto(null, "placeholder3", "producto place holder", new ArrayList<ProductoxNave>(), new ArrayList<ProductoxEstrella>());
+        // Producto pr3 = new Producto(null, "placeholder3", "producto place holder",
+        // new ArrayList<ProductoxNave>(), new ArrayList<ProductoxEstrella>());
         // productoRepository.save(pr3);
-        // Producto pr4 = new Producto(null, "placeholder4", "producto place holder", new ArrayList<ProductoxNave>(), new ArrayList<ProductoxEstrella>());
+        // Producto pr4 = new Producto(null, "placeholder4", "producto place holder",
+        // new ArrayList<ProductoxNave>(), new ArrayList<ProductoxEstrella>());
         // productoRepository.save(pr4);
-        // Producto pr5 = new Producto(null, "placeholder5", "producto place holder", new ArrayList<ProductoxNave>(), new ArrayList<ProductoxEstrella>());
+        // Producto pr5 = new Producto(null, "placeholder5", "producto place holder",
+        // new ArrayList<ProductoxNave>(), new ArrayList<ProductoxEstrella>());
         // productoRepository.save(pr5);
 
         // ProductoxNave prxn1 = new ProductoxNave(null, 10,pr1,n1);
@@ -193,10 +212,12 @@ public class DbInitializer implements CommandLineRunner {
         // ProductoxNave prxn4 = new ProductoxNave(null, 10,pr1,n2);
         // productoxNaveRepository.save(prxn4);
 
-        // Estrella e1 = new Estrella(null, "EstrellaCool", 20, 10, 40, new ArrayList<Planeta>(), new ArrayList<ProductoxEstrella>());
+        // Estrella e1 = new Estrella(null, "EstrellaCool", 20, 10, 40, new
+        // ArrayList<Planeta>(), new ArrayList<ProductoxEstrella>());
         // estrellaRepository.save(e1);
 
-        // Estrella e2 = new Estrella(null, "Destello", 20, 10, 40, new ArrayList<Planeta>(), new ArrayList<ProductoxEstrella>());
+        // Estrella e2 = new Estrella(null, "Destello", 20, 10, 40, new
+        // ArrayList<Planeta>(), new ArrayList<ProductoxEstrella>());
         // estrellaRepository.save(e2);
 
         // // Jugador p1 = new Jugador(null, "Kaad", "Password", "Captain", n1);
@@ -208,11 +229,10 @@ public class DbInitializer implements CommandLineRunner {
         // // Jugador p4 = new Jugador(null, "YoryoBOT", "Password", "Trooper", n1);
         // // jugadorRepository.save(p4);
 
-        // Planeta pla1 = new Planeta(null, "Planeta Vegeta", "Muh buenas a todos waaaaaapisimos", e1);
+        // Planeta pla1 = new Planeta(null, "Planeta Vegeta", "Muh buenas a todos
+        // waaaaaapisimos", e1);
         // planetaRepository.save(pla1);
 
-
-        
     }
 
 }
