@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.edu.Javier.SpaceCourier.model.Planeta;
+import com.edu.Javier.SpaceCourier.model.ProductoxPlaneta;
 import com.edu.Javier.SpaceCourier.repository.PlanetaRepository;
 
 
@@ -33,6 +34,12 @@ public class PlanetaService implements IPlanetService {
     @Override
     public void borrarPlaneta(Long idPlaneta) {
         planetaRepository.deleteById(idPlaneta);
+    }
+
+    @Override
+    public List<ProductoxPlaneta> obtenerListaProductos(Long idPlaneta) {
+        Planeta planet = planetaRepository.findById(idPlaneta).orElseThrow();
+        return planet.getProductosEnPlaneta();
     }
 
     

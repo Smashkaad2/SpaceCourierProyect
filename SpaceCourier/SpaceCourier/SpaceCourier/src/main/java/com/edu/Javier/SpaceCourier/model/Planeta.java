@@ -39,7 +39,7 @@ public class Planeta {
     @JsonIgnore
     private List<ProductoxPlaneta> productos;
 
-    public List<ProductoxPlaneta> getProductosEnEstrella() {
+    public List<ProductoxPlaneta> getProductosEnPlaneta() {
         return productos;
     }
 

@@ -85,5 +85,11 @@ GET http://localhost:8080/api/star/list/planet/17
 GET http://localhost:8080/api/planet/list
 
 ###
+GET http://localhost:8080/api/planet/view/1
+
+###
+GET http://localhost:8080/api/planet/list/product/1
+
+###
 GET http://localhost:8080/api/product/list
 
