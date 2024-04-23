@@ -34,7 +34,7 @@ public class ProductoService implements IProductoService {
     @Override
     public void borrarProducto(Long idProducto) {
         Producto product = obtenerProducto(idProducto);
-        if (!product.getProductosEstrellas().isEmpty()) {
+        if (!product.getProductosPlanetas().isEmpty()) {
             throw new ExcepcionLlena("No se puede borrar el producto");
         }
         else

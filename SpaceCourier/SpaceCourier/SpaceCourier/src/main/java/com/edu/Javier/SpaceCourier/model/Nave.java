@@ -42,7 +42,6 @@ public class Nave {
     private List<Jugador> jugador = new ArrayList<>();
     
     @OneToMany(mappedBy = "naveProd")
-    @JsonIgnore
     private List<ProductoxNave> productos = new ArrayList<>();
 
     public List<Jugador> getJugadores() {

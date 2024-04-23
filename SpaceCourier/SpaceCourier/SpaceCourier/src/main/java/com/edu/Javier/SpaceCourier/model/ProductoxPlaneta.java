@@ -18,22 +18,22 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class ProductoxEstrella {
+public class ProductoxPlaneta {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private int cantidad;
+    private String productoNombre;
     private float factor_Demanda ;
     private float stock;
 
     @ManyToOne
     @JsonIgnore
-    private Producto productoEst;
+    private Producto productoPlaneta;
 
     @ManyToOne
     @JsonIgnore
-    private Estrella estrellaProd;
+    private Planeta planetaProducto;
 
 }

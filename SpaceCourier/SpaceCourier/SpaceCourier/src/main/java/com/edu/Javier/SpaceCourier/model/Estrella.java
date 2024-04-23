@@ -34,10 +34,6 @@ public class Estrella {
      @OneToMany(mappedBy = "estrella")
     private List<Planeta> planetas;
 
-    @OneToMany(mappedBy = "estrellaProd")
-    @JsonIgnore
-    private List<ProductoxEstrella> productos;
-
     public List<Planeta> getPlanetas() {
         return planetas;
     }
@@ -46,12 +42,6 @@ public class Estrella {
         return planetas.add(planeta);
     }
 
-    public List<ProductoxEstrella> getProductosEnEstrella() {
-        return productos;
-    }
-
-    public boolean addProductoenEstrella(ProductoxEstrella productoenEstrella) {
-        return productos.add(productoenEstrella);
-    }
+    
 
 }

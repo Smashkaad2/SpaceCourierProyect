@@ -23,6 +23,7 @@ public class ProductoxNave {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String nombreProducto;
     private int cantidad;
 
     @ManyToOne 

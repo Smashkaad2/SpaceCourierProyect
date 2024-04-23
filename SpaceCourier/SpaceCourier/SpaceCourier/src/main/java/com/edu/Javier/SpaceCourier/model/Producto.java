@@ -29,10 +29,6 @@ public class Producto {
 
     private String nombreProducto;
     private String description;
-    private float factor_Demanda ;
-    private int stock;
-    private int precio;
-
     
     @ManyToOne
     @JsonIgnore
@@ -42,9 +38,9 @@ public class Producto {
     @OneToMany(mappedBy = "producto")
     private List<ProductoxNave> productosNave;
 
-    @OneToMany(mappedBy = "productoEst")
+    @OneToMany(mappedBy = "productoPlaneta")
     @JsonIgnore
-    private List<ProductoxEstrella> productosEstrella;
+    private List<ProductoxPlaneta> productosPlaneta;
 
     public List<ProductoxNave> getProductosNave() {
         return productosNave;
@@ -54,12 +50,12 @@ public class Producto {
         return productosNave.add(producto);
     }
 
-    public List<ProductoxEstrella> getProductosEstrellas() {
-        return productosEstrella;
+    public List<ProductoxPlaneta> getProductosPlanetas() {
+        return productosPlaneta;
     }
 
-    public boolean addProductoEstrella(ProductoxEstrella productoEstrella) {
-        return productosEstrella.add(productoEstrella);
+    public boolean addProductoPlaneta(ProductoxPlaneta productoPlaneta) {
+        return productosPlaneta.add(productoPlaneta);
     }
 
 }

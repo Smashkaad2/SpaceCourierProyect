@@ -13,7 +13,7 @@ import com.edu.Javier.SpaceCourier.model.Jugador;
 import com.edu.Javier.SpaceCourier.model.Nave;
 import com.edu.Javier.SpaceCourier.model.Planeta;
 import com.edu.Javier.SpaceCourier.model.Producto;
-import com.edu.Javier.SpaceCourier.model.ProductoxEstrella;
+import com.edu.Javier.SpaceCourier.model.ProductoxPlaneta;
 import com.edu.Javier.SpaceCourier.model.ProductoxNave;
 import com.edu.Javier.SpaceCourier.repository.EstrellaRepository;
 import com.edu.Javier.SpaceCourier.repository.JugadorRepository;
@@ -21,6 +21,7 @@ import com.edu.Javier.SpaceCourier.repository.NaveRepository;
 import com.edu.Javier.SpaceCourier.repository.PlanetaRepository;
 import com.edu.Javier.SpaceCourier.repository.ProductoRepository;
 import com.edu.Javier.SpaceCourier.repository.ProductoxNaveRepository;
+import com.edu.Javier.SpaceCourier.repository.ProductoxPlanetaRepository;
 
 @Component
 public class DbInitializer implements CommandLineRunner {
@@ -37,6 +38,8 @@ public class DbInitializer implements CommandLineRunner {
     private ProductoxNaveRepository productoxNaveRepository;
     @Autowired
     private PlanetaRepository planetaRepository;
+    @Autowired
+    private ProductoxPlanetaRepository productoxPlanetaRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -95,9 +98,6 @@ public class DbInitializer implements CommandLineRunner {
                 Producto producto = new Producto();
                 producto.setNombreProducto("Producto " + i);
                 producto.setDescription("Descripción del Producto " + i);
-                producto.setStock(stockAleatorio);
-                producto.setFactor_Demanda(factorDemandaAleatorio);
-
                 productoRepository.save(producto);
             }
             System.out.println("Se han creado 30 productos.");
@@ -120,6 +120,7 @@ public class DbInitializer implements CommandLineRunner {
 
                 productoxNave.setProducto(productoAleatorio);
                 productoxNave.setNaveProd(naveAleatoria);
+                productoxNave.setNombreProducto(productoAleatorio.getNombreProducto());
 
                 productoxNaveRepository.save(productoxNave);
             }
@@ -151,6 +152,7 @@ public class DbInitializer implements CommandLineRunner {
 
             List<Estrella> estrellasDisponibles = estrellaRepository.findAll();
             List<Producto> productosDisponibles = productoRepository.findAll();
+            List<ProductoxPlaneta> productosxplanetasDisponibles = new ArrayList<>();
 
             for (int i = 1; i <= 100; i++) {
                 Planeta planeta = new Planeta();
@@ -162,11 +164,20 @@ public class DbInitializer implements CommandLineRunner {
                 Estrella estrellaAleatoria = estrellasDisponibles.get(rand.nextInt(estrellasDisponibles.size()));
 
                 planeta.setEstrella(estrellaAleatoria);
-                
+
                 for (int j = 0; j < 5; j++) {
+                    ProductoxPlaneta nuevoProductoxPlaneta = new ProductoxPlaneta();
                     Producto productoAleatorio = productosDisponibles.get(random.nextInt(productosDisponibles.size()));
-                    planeta.addProducto(productoAleatorio);
+                    nuevoProductoxPlaneta.setProductoNombre(productoAleatorio.getNombreProducto());
+                    nuevoProductoxPlaneta.setFactor_Demanda(random.nextInt(1000001));
+                    nuevoProductoxPlaneta.setStock(random.nextInt(1000001));
+                    nuevoProductoxPlaneta.setProductoPlaneta(productoAleatorio);
+                    nuevoProductoxPlaneta.setPlanetaProducto(planeta);
+                    productosxplanetasDisponibles.add(nuevoProductoxPlaneta);
+                    productoxPlanetaRepository.save(nuevoProductoxPlaneta);
+                    
                 }
+                
 
                 planetaRepository.save(planeta);
             }
