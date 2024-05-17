@@ -1,4 +1,4 @@
-package com.edu.Javier.SpaceCourier.model;
+package com.edu.Javier.SpaceCourier.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -18,7 +18,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class ProductoxPlaneta {
+public class ProductoxPlanetadto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,13 +28,7 @@ public class ProductoxPlaneta {
     private float factor_Demanda;
     private float factorOferta;
     private float stock;
-
-    @ManyToOne
-    @JsonIgnore
-    private Producto productoPlaneta;
-
-    @ManyToOne
-    @JsonIgnore
-    private Planeta planetaProducto;
+    private Long planetaid;
+    private Long productoid;
 
 }

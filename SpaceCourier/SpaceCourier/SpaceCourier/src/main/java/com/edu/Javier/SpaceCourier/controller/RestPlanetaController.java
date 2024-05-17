@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.edu.Javier.SpaceCourier.dto.ProductoxPlanetadto;
 import com.edu.Javier.SpaceCourier.model.Planeta;
 import com.edu.Javier.SpaceCourier.model.ProductoxPlaneta;
 import com.edu.Javier.SpaceCourier.services.IPlanetService;
@@ -61,7 +62,7 @@ public class RestPlanetaController {
     }
 
     @GetMapping("/list/product/{idplanet}")
-    public List<ProductoxPlaneta> obtenerListaPlanetasDeEstrella(@PathVariable long idplanet) {
+    public List<ProductoxPlanetadto> obtenerListaPlanetasDeEstrella(@PathVariable long idplanet) {
         return planetaService.obtenerListaProductos(idplanet);
     }
     

@@ -10,6 +10,7 @@ import com.edu.Javier.SpaceCourier.model.Jugador;
 import com.edu.Javier.SpaceCourier.model.Nave;
 import com.edu.Javier.SpaceCourier.services.IJugadorService;
 import com.edu.Javier.SpaceCourier.services.INaveService;
+import com.edu.Javier.SpaceCourier.services.IProductoService;
 
 @RestController
 @RequestMapping("api/ship")
@@ -19,6 +20,10 @@ public class RestNaveContoller {
 
     @Autowired
     private IJugadorService jugadorService;
+
+     @Autowired
+    private IProductoService productoService;
+
 
 
     @GetMapping("/list")
@@ -68,6 +73,12 @@ public class RestNaveContoller {
         Nave naveAdd = naveService.obtenerNave(idNave);
         player.setNave(naveAdd);
         jugadorService.crearJugador(player);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/addProducto/{idNave}/{idProducto}/{stock}")
+    public ResponseEntity<?> AddProductoNave(@PathVariable Long idNave, @PathVariable Long idProducto, @PathVariable int stock) {
+        naveService.agregarProductoNave(idNave, idProducto, stock);
         return ResponseEntity.ok().build();
     }
 }

@@ -170,6 +170,7 @@ public class DbInitializer implements CommandLineRunner {
                     Producto productoAleatorio = productosDisponibles.get(random.nextInt(productosDisponibles.size()));
                     nuevoProductoxPlaneta.setProductoNombre(productoAleatorio.getNombreProducto());
                     nuevoProductoxPlaneta.setFactor_Demanda(random.nextInt(1000001));
+                    nuevoProductoxPlaneta.setFactorOferta(random.nextInt(1000001));
                     nuevoProductoxPlaneta.setStock(random.nextInt(1000001));
                     nuevoProductoxPlaneta.setProductoPlaneta(productoAleatorio);
                     nuevoProductoxPlaneta.setPlanetaProducto(planeta);

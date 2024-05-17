@@ -1,10 +1,12 @@
 package com.edu.Javier.SpaceCourier.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.edu.Javier.SpaceCourier.dto.ProductoxPlanetadto;
 import com.edu.Javier.SpaceCourier.model.Planeta;
 import com.edu.Javier.SpaceCourier.model.ProductoxPlaneta;
 import com.edu.Javier.SpaceCourier.repository.PlanetaRepository;
@@ -37,9 +39,24 @@ public class PlanetaService implements IPlanetService {
     }
 
     @Override
-    public List<ProductoxPlaneta> obtenerListaProductos(Long idPlaneta) {
+    public List<ProductoxPlanetadto> obtenerListaProductos(Long idPlaneta) {
         Planeta planet = planetaRepository.findById(idPlaneta).orElseThrow();
-        return planet.getProductosEnPlaneta();
+        List<ProductoxPlaneta> planetProductsList = planet.getProductosEnPlaneta();  
+        List<ProductoxPlanetadto> listaProductosDto = new ArrayList<>();
+
+        for (ProductoxPlaneta productoxPlaneta : planetProductsList) {
+            ProductoxPlanetadto productoDto = new ProductoxPlanetadto();
+            productoDto.setId(productoxPlaneta.getId());
+            productoDto.setProductoNombre(productoxPlaneta.getProductoNombre());
+            productoDto.setFactor_Demanda(productoxPlaneta.getFactor_Demanda());
+            productoDto.setFactorOferta(productoxPlaneta.getFactorOferta());
+            productoDto.setStock(productoxPlaneta.getStock());
+            productoDto.setProductoid(productoxPlaneta.getProductoPlaneta().getId());
+            productoDto.setPlanetaid(productoxPlaneta.getPlanetaProducto().getId());
+            listaProductosDto.add(productoDto);
+        }
+
+        return listaProductosDto;
     }
 
     
