@@ -84,10 +84,6 @@ public class DbInitializer implements CommandLineRunner {
             System.out.println("Ya existen jugadores en la base de datos.");
         }
 
-        Nave n3 = new Nave(null, "NaveFantasma", 300, 100, 0, 0, 0, 0, new ArrayList<Jugador>(),
-                new ArrayList<ProductoxNave>());
-        naveRepository.save(n3);
-
         if (productoRepository.count() == 0) {
 
             Random random = new Random();
@@ -176,9 +172,8 @@ public class DbInitializer implements CommandLineRunner {
                     nuevoProductoxPlaneta.setPlanetaProducto(planeta);
                     productosxplanetasDisponibles.add(nuevoProductoxPlaneta);
                     productoxPlanetaRepository.save(nuevoProductoxPlaneta);
-                    
+
                 }
-                
 
                 planetaRepository.save(planeta);
             }
@@ -244,6 +239,10 @@ public class DbInitializer implements CommandLineRunner {
         // Planeta pla1 = new Planeta(null, "Planeta Vegeta", "Muh buenas a todos
         // waaaaaapisimos", e1);
         // planetaRepository.save(pla1);
+
+        Nave n3 = new Nave(null, "NaveFantasma", 300, 100, 0, 0, 0, 0, new ArrayList<Jugador>(),
+                new ArrayList<ProductoxNave>());
+        naveRepository.save(n3);
 
     }
 

@@ -34,7 +34,7 @@ public class Producto {
     @JsonIgnore
     private Planeta planetProduct;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "producto")
     private List<ProductoxNave> productosNave;
 

@@ -52,11 +52,9 @@ public class RestNaveContoller {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/delete/{idShip}")
-    public ResponseEntity<?> borrarNave(@PathVariable Long idShip, @RequestBody Nave ship) {
-        naveService.borrarNave(idShip);
-        naveService.actualizarNave(ship);
-        return ResponseEntity.ok().build();
+    @DeleteMapping("/delete/{idNave}")
+    public void borrarNave(@PathVariable Long idNave) {
+        naveService.borrarNave(idNave);
     }
 
     @PostMapping("/addExistingPlayer/{idPlayer}/{idNave}")

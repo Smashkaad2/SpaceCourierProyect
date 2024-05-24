@@ -34,6 +34,7 @@ public class Estrella {
      @OneToMany(mappedBy = "estrella")
     private List<Planeta> planetas;
 
+    @JsonIgnore
     public List<Planeta> getPlanetas() {
         return planetas;
     }

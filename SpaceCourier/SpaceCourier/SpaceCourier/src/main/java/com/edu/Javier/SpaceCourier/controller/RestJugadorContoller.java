@@ -3,6 +3,8 @@ package com.edu.Javier.SpaceCourier.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.edu.Javier.SpaceCourier.model.Jugador;
@@ -25,7 +27,6 @@ public class RestJugadorContoller {
     public Nave recuperarJugadorNave(@PathVariable Long idPlayer) {
         return jugadorService.obtenerNaveJugador(idPlayer);
     }
-    
 
     @DeleteMapping("/{idPlayer}")
     public void borrarJugador(@PathVariable Long idPlayer) {
@@ -33,8 +34,9 @@ public class RestJugadorContoller {
     }
 
     @PostMapping
-    public void crearJugador(@RequestBody Jugador jugador) {
+    public ResponseEntity<Void> crearJugador(@RequestBody Jugador jugador) {
         jugadorService.crearJugador(jugador);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PutMapping("/{idPlayer}")
@@ -47,5 +49,5 @@ public class RestJugadorContoller {
     public List<Jugador> listarJugadores() {
         return jugadorService.obtenerTodosJugadores();
     }
-    
+
 }

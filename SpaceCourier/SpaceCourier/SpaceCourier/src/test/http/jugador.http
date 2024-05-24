@@ -1,10 +1,14 @@
-###Player
+###Player (By id)
 GET http://localhost:8080/api/player/101
 
+###Player (Find Ship)
 ###
-GET http://localhost:8080/api/player/list
+GET http://localhost:8080/api/player/nave/1
 
-###
+###Player (Delete)
+DELETE http://localhost:8080/api/player/1
+
+###Player (Create)
 POST http://localhost:8080/api/player
 Content-Type: application/json
 
@@ -14,7 +18,7 @@ Content-Type: application/json
     "rol": "xd"
 }
 
-###
+###Player (Update)
 PUT http://localhost:8080/api/player/101
 Content-Type: application/json
 
@@ -25,13 +29,17 @@ Content-Type: application/json
     "rol": "apaapapappa"
 }
 
-###
-DELETE http://localhost:8080/api/player/101
+###Player (List)
+GET  http://localhost:8080/api/player/list
 
-###Ship
+
+###Ship(By Id)
+GET http://localhost:8080/api/ship/view/21
+
+###Ship(List)
 GET http://localhost:8080/api/ship/list
 
-###
+###Ship(Create)
 POST http://localhost:8080/api/ship/create
 Content-Type: application/json
 
@@ -41,13 +49,12 @@ Content-Type: application/json
     "capacidadCarga": "20"
 }
 
-###
-DELETE http://localhost:8080/api/ship/delete/22
+###Ship(Delete)
+DELETE http://localhost:8080/api/ship/delete/21
 
-###
-GET http://localhost:8080/api/ship/view/18
 
-###
+
+###Ship(Update)
 PUT http://localhost:8080/api/ship/edit/3
 Content-Type: application/json
 
@@ -75,7 +82,7 @@ Content-Type: application/json
     "rol": "xd"
 }
 
-###Star
+###Star (List)
 GET http://localhost:8080/api/star/list
 
 ###
