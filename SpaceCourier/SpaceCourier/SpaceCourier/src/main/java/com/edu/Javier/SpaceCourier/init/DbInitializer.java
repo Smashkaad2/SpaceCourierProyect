@@ -65,13 +65,23 @@ public class DbInitializer implements CommandLineRunner {
         if (jugadorRepository.count() == 0) {
 
             List<Nave> navesDisponibles = naveRepository.findAll();
+            Random random = new Random();
+            int randValue = 0;
 
             for (int i = 1; i <= 100; i++) {
                 Jugador jugador = new Jugador();
                 jugador.setUsername("jugador" + i);
                 jugador.setPassword("password" + i);
-                jugador.setRol("jugador");
-
+                randValue = random.nextInt(3);
+                if (randValue == 0) {
+                    jugador.setRol("capitan"); 
+                }
+                else if (randValue == 1) {
+                    jugador.setRol("comerciante");
+                }
+                else 
+                    jugador.setRol("piloto");
+                
                 Random rand = new Random();
                 Nave naveAleatoria = navesDisponibles.get(rand.nextInt(navesDisponibles.size()));
 
